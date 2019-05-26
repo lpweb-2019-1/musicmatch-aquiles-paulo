@@ -191,6 +191,9 @@ export class DiscoService {
    * @param artista Identificador ou nome do artista
    */
   listaDeMusicasDoArtista(artista) {
+    let gostar = 0;
+    let naogostar = 0;
+
     let a = artista;
     if (isNumber(a) || isString(a)) {
       a = this.encontrarArtista(artista);
@@ -203,6 +206,7 @@ export class DiscoService {
     }
     return lista;
   }
+
 
   /**
    * Preenche os atributos da música com objetos para artistas e gênero
