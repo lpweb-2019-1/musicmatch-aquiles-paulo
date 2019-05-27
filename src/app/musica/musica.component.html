@@ -25,29 +25,39 @@
 </section>
 
 <br>
-<h2>Sugestões</h2>
 <section *ngIf="musica.gostei">
-  <span *ngFor="let dados of disco.listaDeMusicas()">
-    <a [routerLink]="['/musicas', dados.id]" *ngIf="musica.genero.id === dados.genero.id">
-      <div>
-        <b>{{ dados.titulo }}</b> -
-        <span *ngFor="let artista of dados.artistas; last as ultimo">
-          {{ artista.nome }}<span *ngIf="!ultimo">, </span>
-        </span>
+  <h2>Sugestões</h2>
+  <h3>Musicas com os Mesmos Artistas</h3>
+  <span *ngFor="let artista of musica.artistas">
+    <span *ngFor="let musica of disco.listaDeMusicasDoArtista(artista.nome)">
+      {{ musica.titulo }}<br>
+    </span>
+  </span>
+  <h3>Musicas com o Mesmo Genero</h3>
+  <span *ngFor="let genero of disco.listaDeGeneros()">
+    <span *ngIf="genero.nome === musica.genero.nome">
+      <div *ngFor="let musica of genero.musicas">
+        {{ musica.titulo }}
       </div>
-    </a>
+    </span>
   </span>
 </section>
 
 <section *ngIf="musica.naogostei">
-    <span *ngFor="let dados of disco.listaDeMusicas()">
-      <a [routerLink]="['/musicas', musica.id]" *ngIf="musica.genero.id != dados.genero.id">
-        <div>
-          <b>{{ dados.titulo }}</b> -
-          <span *ngFor="let artista of dados.artistas; last as ultimo">
-            {{ artista.nome }}<span *ngIf="!ultimo">, </span>
-          </span>
-        </div>
-      </a>
+  <h2>Sugestões</h2>
+  <h3>Musicas com outros Artistas</h3>
+  <span *ngFor="let artista of musica.artistas">
+      <span
+        *ngFor="let musica of disco.listaDeMusicasDoArtista(artista.nome)">
+        {{ musica.titulo }}<br>
+      </span>
     </span>
-  </section>
+    <h3>Musicas com Genero Diferente</h3>
+    <span *ngFor="let genero of disco.listaDeGeneros()">
+        <span *ngIf="genero.nome !== musica.genero.nome">
+          <div *ngFor="let musica of genero.musicas">
+            {{ musica.titulo }}
+          </div>
+        </span>
+      </span>
+</section>
