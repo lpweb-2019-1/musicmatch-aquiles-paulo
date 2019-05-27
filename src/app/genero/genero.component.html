@@ -1,5 +1,5 @@
 <section *ngIf="this.genero">
-    <h1 class="mb-4 mt-5 border-bottom">{{ this.genero.nome }}</h1>
+    <h1 class="mb-4 mt-5 border-bottom"><i class="text-muted fas fa-tag"></i> {{ this.genero.nome }}</h1>
     <span *ngFor="let musica of disco.listaDeMusicas()">
       <a [routerLink]="['/musicas', musica.id]" *ngIf="genero.id === musica.genero.id">
         <div>

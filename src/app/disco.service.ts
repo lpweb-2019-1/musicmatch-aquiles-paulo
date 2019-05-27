@@ -17,7 +17,7 @@ export class DiscoService {
     this.adicionarGenero('Bossa Nova');
 
     this.adicionarMusica('O Show Tem Que Continuar', ['Beth Carvalho'], 'Samba de Raiz');
-    this.adicionarMusica('Foi Um Rio Que Passou Em Minha Vida', ['Paulinho da Viola'], 'Samba de Raiz');
+    this.adicionarMusica('Foi Um Rio Que Passou Em Minha Vida', ['Paulinho da Viola', 'Beth Carvalho'], 'Samba de Raiz');
     this.adicionarMusica('Canta Canta, Minha Gente', ['Martinho Da Vila'], 'Samba de Raiz');
     this.adicionarMusica('Deixa A Vida Me Levar', ['Zeca Pagodinho'], 'Samba de Raiz');
     this.adicionarMusica('Brisa', ['IZA'], 'Pop Brasil');
@@ -32,7 +32,7 @@ export class DiscoService {
     this.adicionarMusica('Samba Da Benção', ['Vinícius de Moraes'], 'Bossa Nova');
     this.adicionarMusica('Desafinado', ['João Gilberto'], 'Bossa Nova');
     this.adicionarMusica('Fotografia', ['Elis Regina', 'Antônio Carlos Jobim'], 'Bossa Nova');
-    this.adicionarMusica('Pela luz dos olhos teus', ['Antônio Carlos Jobim', 'Miúcha'], 'Bossa Nova');
+    this.adicionarMusica('Pela luz dos olhos teus', ['Antônio Carlos Jobim', 'Miúcha', 'Beth Carvalho'], 'Bossa Nova');
 
   }
 

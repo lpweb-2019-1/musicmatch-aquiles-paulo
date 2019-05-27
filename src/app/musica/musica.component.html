@@ -22,9 +22,32 @@
     <button type="button" class="btn btn-outline-primary" (click)="disco.gostar(musica)">Gostei</button>&nbsp;
     <button type="button" class="btn btn-outline-danger" (click)="disco.naoGostar(musica)">Não Gostei</button>
   </div>
-
-  <div *ngFor="let musica of sugestao">
-    {{ musica.titulo }}
-  </div>
-
 </section>
+
+<br>
+<h2>Sugestões</h2>
+<section *ngIf="musica.gostei">
+  <span *ngFor="let dados of disco.listaDeMusicas()">
+    <a [routerLink]="['/musicas', dados.id]" *ngIf="musica.genero.id === dados.genero.id">
+      <div>
+        <b>{{ dados.titulo }}</b> -
+        <span *ngFor="let artista of dados.artistas; last as ultimo">
+          {{ artista.nome }}<span *ngIf="!ultimo">, </span>
+        </span>
+      </div>
+    </a>
+  </span>
+</section>
+
+<section *ngIf="musica.naogostei">
+    <span *ngFor="let dados of disco.listaDeMusicas()">
+      <a [routerLink]="['/musicas', musica.id]" *ngIf="musica.genero.id != dados.genero.id">
+        <div>
+          <b>{{ dados.titulo }}</b> -
+          <span *ngFor="let artista of dados.artistas; last as ultimo">
+            {{ artista.nome }}<span *ngIf="!ultimo">, </span>
+          </span>
+        </div>
+      </a>
+    </span>
+  </section>
