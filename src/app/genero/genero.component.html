@@ -2,12 +2,12 @@
     <h1 class="mb-4 mt-5 border-bottom">{{ this.genero.nome }}</h1>
     <span *ngFor="let musica of disco.listaDeMusicas()">
       <a [routerLink]="['/musicas', musica.id]" *ngIf="genero.id === musica.genero.id">
-        <p>
+        <div>
           <b>{{ musica.genero.nome }}</b> -
           <span *ngFor="let artista of musica.artistas; last as ultimo">
             {{ artista.nome }}<span *ngIf="!ultimo">, </span>
           </span>
-        </p>
+        </div>
       </a>
     </span>
   </section>
