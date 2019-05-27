@@ -14,7 +14,12 @@
     {{musica.genero.nome}}
   </div>
   <div>
-    <button type="button" class="btn btn-outline-primary ">Gostei</button>&nbsp;
-    <button type="button" class="btn btn-outline-danger">Não Gostei</button>
+    <p>
+      &nbsp; &nbsp; &nbsp;{{ musica.gostei }}
+      {{ musica.naogostei }}
+    </p>
+
+    <button type="button" class="btn btn-outline-primary" (click)="disco.gostar(musica)">Gostei</button>&nbsp;
+    <button type="button" class="btn btn-outline-danger" (click)="disco.naoGostar(musica)">Não Gostei</button>
   </div>
 </section>

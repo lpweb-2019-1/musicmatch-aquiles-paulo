@@ -9,6 +9,7 @@ export class DiscoService {
   artistas = [];
   musicas = [];
 
+
   constructor() {
     this.adicionarGenero('Samba de Raiz');
     this.adicionarGenero('Pop Brasil');
@@ -129,7 +130,9 @@ export class DiscoService {
       id: this.musicas.length + 1,
       titulo,
       idGenero: g.id,
-      artistas: listaArtistas
+      artistas: listaArtistas,
+      gostei: 0,
+      naogostei: 0
     };
     this.musicas.push(musica);
     return musica;
@@ -174,6 +177,7 @@ export class DiscoService {
     return this.generos;
   }
 
+
   /**
    * Retorna a lista das músicas, preenchendo os atributos `artistas`
    * e `genero` com os respectivos objetos.
@@ -191,8 +195,7 @@ export class DiscoService {
    * @param artista Identificador ou nome do artista
    */
   listaDeMusicasDoArtista(artista) {
-    let gostar = 0;
-    let naogostar = 0;
+
 
     let a = artista;
     if (isNumber(a) || isString(a)) {
@@ -214,6 +217,7 @@ export class DiscoService {
    * @param musica A música
    */
   preencherObjetoMusica(musica) {
+
     let artistas = [];
     for (const artistaId of musica.artistas) {
       if (!isObject(artistaId)) {
@@ -225,6 +229,35 @@ export class DiscoService {
     musica.artistas = artistas;
     musica.genero = this.encontrarGenero(musica.idGenero);
   }
+
+  gostar(musica){
+    const music = this.encontrarMusica(musica.id)
+    if (!music) return null
+    if (music.gostei === 0 && music.naogostei === 0){
+      music.gostei++
+      return music
+    } else{
+      if (music.gostei === 0 && music.naogostei === 1){
+        music.naogostei--
+        music.gostei++
+        return music;
+      }
+    }
+  }
+
+  naoGostar(musica) {
+    const music = this.encontrarMusica(musica.id)
+    if (!music) return null
+    if (music.naogostei === 0 && music.gostei === 0) {
+      music.naogostei++
+      return music
+    } else if (music.naogostei === 0 && music.gostei === 1) {
+      music.naogostei++
+      music.gostei--
+      return music;
+    }
+  }
+
 
   /**
    * Preenche o objeto com a lista de músicas do artista.
