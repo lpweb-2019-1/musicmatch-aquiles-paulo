@@ -9,6 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class MusicaComponent implements OnInit {
   musica = null;
+  sugestao = null;
 
   constructor(private disco: DiscoService, private route: ActivatedRoute) { }
 

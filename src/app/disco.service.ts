@@ -77,21 +77,6 @@ export class DiscoService {
     return genero;
   }
 
-  preencherObjetoGenero(genero) {
-    if (genero) {
-      genero.musicas = this.listaDeMusicasDoGenero(genero);
-    }
-  }
-
-  listaDeMusicasDoGenero(genero) {
-    let a = genero;
-    if (isNumber(a) || isString(a)) {
-      a = this.encontrarGenero(genero);
-    }
-    let lista = this.musicas.filter(musica => musica.idGenero == genero.id);
-    return lista;
-  }
-
   /**
    * Adicionar um artista na lista de artistas.
    * 
@@ -245,14 +230,14 @@ export class DiscoService {
     musica.genero = this.encontrarGenero(musica.idGenero);
   }
 
-  gostar(musica){
+  gostar(musica) {
     const music = this.encontrarMusica(musica.id)
     if (!music) return null
-    if (music.gostei === 0 && music.naogostei === 0){
+    if (music.gostei === 0 && music.naogostei === 0) {
       music.gostei++
       return music
-    } else{
-      if (music.gostei === 0 && music.naogostei >= 1){
+    } else {
+      if (music.gostei === 0 && music.naogostei >= 1) {
         music.naogostei--
         music.gostei++
         return music;

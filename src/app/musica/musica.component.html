@@ -22,4 +22,9 @@
     <button type="button" class="btn btn-outline-primary" (click)="disco.gostar(musica)">Gostei</button>&nbsp;
     <button type="button" class="btn btn-outline-danger" (click)="disco.naoGostar(musica)">Não Gostei</button>
   </div>
+
+  <div *ngFor="let musica of sugestao">
+    {{ musica.titulo }}
+  </div>
+
 </section>

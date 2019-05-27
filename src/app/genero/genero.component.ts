@@ -15,7 +15,6 @@ export class GeneroComponent implements OnInit {
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
     this.genero = this.disco.encontrarGenero(parseInt(id));
-    this.disco.preencherObjetoGenero(this.genero);
   }
 
 }
