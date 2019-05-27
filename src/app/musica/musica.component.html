@@ -47,17 +47,20 @@
   <h2>Sugestões</h2>
   <h3>Musicas com outros Artistas</h3>
   <span *ngFor="let artista of musica.artistas">
-      <span
-        *ngFor="let musica of disco.listaDeMusicasDoArtista(artista.nome)">
-        {{ musica.titulo }}<br>
-      </span>
-    </span>
-    <h3>Musicas com Genero Diferente</h3>
-    <span *ngFor="let genero of disco.listaDeGeneros()">
-        <span *ngIf="genero.nome !== musica.genero.nome">
-          <div *ngFor="let musica of genero.musicas">
-            {{ musica.titulo }}
-          </div>
+    <span *ngFor="let art of disco.listaDeArtistas()">
+      <span *ngIf="art.nome !== artista.nome">
+        <span *ngFor="let musica of disco.listaDeMusicasDoArtista(art.nome)">
+          {{ musica.titulo }}<br>
         </span>
       </span>
+    </span>
+  </span>
+  <h3>Musicas com Genero Diferente</h3>
+  <span *ngFor="let genero of disco.listaDeGeneros()">
+    <span *ngIf="genero.nome !== musica.genero.nome">
+      <div *ngFor="let musica of genero.musicas">
+        {{ musica.titulo }}
+      </div>
+    </span>
+  </span>
 </section>
