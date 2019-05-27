@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DiscoService } from '../disco.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-genero',
@@ -6,10 +8,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./genero.component.css']
 })
 export class GeneroComponent implements OnInit {
+  genero = null;
 
-  constructor() { }
+  constructor(private disco: DiscoService, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    const id = this.route.snapshot.paramMap.get('id');
+    this.genero = this.disco.encontrarGenero(parseInt(id));
+    this.disco.preencherObjetoGenero(this.genero);
   }
 
 }
