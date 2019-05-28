@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { isNumber, isString, isObject } from 'util';
+import { GeneroComponent } from './genero/genero.component';
 
 @Injectable({
   providedIn: 'root'
@@ -43,6 +44,29 @@ export class DiscoService {
    */
   encontrarGeneroPorNome(nome) {
     return this.generos.find(genero => genero.nome == nome);
+  }
+
+  pesquisar(pesquisa) {
+    let busca = [];
+    for (let musica of this.musicas) {
+      if (musica.titulo.indexOf(pesquisa) != -1) {
+        musica.tipo = 'musica';
+        busca.push(musica);
+      }
+    }
+    for (let artista of this.artistas) {
+      if (artista.nome.indexOf(pesquisa) != -1) {
+        artista.tipo = 'artista';
+        busca.push(artista);
+      }
+    }
+    for (let aux of this.generos) {
+      if (aux.nome.indexOf(pesquisa) != -1) {
+        aux.tipo = 'genero';
+        busca.push(aux);
+      }
+    }
+    return busca;
   }
 
   /**
@@ -233,11 +257,11 @@ export class DiscoService {
   gostar(musica) {
     const music = this.encontrarMusica(musica.id)
     if (!music) return null
-    if (music.gostei === 0 && music.naogostei === 0) {
+    if (music.gostei >= 0 && music.naogostei === 0) {
       music.gostei++
       return music
     } else {
-      if (music.gostei === 0 && music.naogostei >= 1) {
+      if (music.gostei >= 0 && music.naogostei >= 1) {
         music.naogostei--
         music.gostei++
         return music;
@@ -248,10 +272,10 @@ export class DiscoService {
   naoGostar(musica) {
     const music = this.encontrarMusica(musica.id)
     if (!music) return null
-    if (music.naogostei === 0 && music.gostei === 0) {
+    if (music.naogostei >= 0 && music.gostei === 0) {
       music.naogostei++
       return music
-    } else if (music.naogostei === 0 && music.gostei >= 1) {
+    } else if (music.naogostei >= 0 && music.gostei >= 1) {
       music.naogostei++
       music.gostei--
       return music;
