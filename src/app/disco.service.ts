@@ -255,30 +255,26 @@ export class DiscoService {
   }
 
   gostar(musica) {
-    const music = this.encontrarMusica(musica.id)
-    if (!music) return null
-    if (music.gostei >= 0 && music.naogostei === 0) {
-      music.gostei++
-      return music
+    if (musica.gostei >= 0 && musica.naogostei === 0) {
+      musica.gostei++
+      return musica;
     } else {
-      if (music.gostei >= 0 && music.naogostei >= 1) {
-        music.naogostei--
-        music.gostei++
-        return music;
+      if (musica.gostei >= 0 && musica.naogostei >= 1) {
+        musica.naogostei--
+        musica.gostei++
+        return musica;
       }
     }
   }
 
   naoGostar(musica) {
-    const music = this.encontrarMusica(musica.id)
-    if (!music) return null
-    if (music.naogostei >= 0 && music.gostei === 0) {
-      music.naogostei++
-      return music
-    } else if (music.naogostei >= 0 && music.gostei >= 1) {
-      music.naogostei++
-      music.gostei--
-      return music;
+    if (musica.naogostei >= 0 && musica.gostei === 0) {
+      musica.naogostei++
+      return musica
+    } else if (musica.naogostei >= 0 && musica.gostei >= 1) {
+      musica.naogostei++
+      musica.gostei--
+      return musica;
     }
   }
 

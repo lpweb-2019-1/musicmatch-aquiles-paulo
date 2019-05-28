@@ -25,7 +25,7 @@
 </section>
 
 <br>
-<section *ngIf="musica.gostei">
+<section *ngIf="musica.gostei > musica.naogostei">
   <h2>Sugestões</h2>
   <h3>Músicas com os Mesmos Artistas</h3>
   <span *ngFor="let artista of musica.artistas">
@@ -52,7 +52,7 @@
   </span>
 </section>
 
-<section *ngIf="musica.naogostei">
+<section *ngIf="musica.naogostei > musica.gostei">
   <h2>Sugestões</h2>
   <h3>Músicas com outros Artistas</h3>
   <span *ngFor="let artista of musica.artistas">
